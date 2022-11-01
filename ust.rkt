@@ -2,6 +2,11 @@
 
 (require racket/list)
 
+;; Sidenote:
+;; ust    = Umsatzsteuer = VAT
+;; netto  = net value
+;; brutto = gross amount (or gross sum)
+
 (define ust-satz-default 19)
 
 (define (calculate-ust-from-netto netto [ust-satz ust-satz-default])
@@ -78,10 +83,10 @@
         [ust (second results)]
         [ust-satz (third results)]
         [brutto (fourth results)])
-    (printf "Netto:     ~a\n" (number->currency netto))
-    (printf "UmsatzSt.: ~a\n" (number->currency ust))
-    (printf "USt.Satz:  ~a%\n" ust-satz)
-    (printf "Brutto:    ~a\n" (number->currency brutto))))
+    (printf "Net Value:     ~a\n" (number->currency netto))
+    (printf "VAT amount:    ~a\n" (number->currency ust))
+    (printf "VAT:           ~a%\n" ust-satz)
+    (printf "Gross amount:  ~a\n" (number->currency brutto))))
 
 (define (run args)
   (print-results (calculate-netto-ust-brutto args)))
